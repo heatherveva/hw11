@@ -1,6 +1,9 @@
+// when the user enters a note, this is where the info gets populated and then retrieved from
+// retrieved from user input
+
 [
-    {
-        "title":"Test Title",
-        "text":"Test text"
-    }
+  {
+    "title": "Test Title",
+    "text": "Test text"
+  }
 ]

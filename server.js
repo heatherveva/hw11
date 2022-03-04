@@ -1,6 +1,6 @@
 const express = require("express");
 const path = require("path");
-const apiRoutes = require("./routes/apiRoutes");
+const apiRoutes = require("./Develop/routes/apiRoutes");
 
 //MAKE THESE API ROUTES FOR THE FRONTEND DEVELOPER
 //const api = require("./routes/index.js");
@@ -17,14 +17,13 @@ app.use(express.urlencoded({ extended: true }));
 //app.use("/api", api);
 
 app.use(express.static("public"));
-
-//GET route for home page
-app.get("/"),
-  (req, res) => res.sendFile(path.join(__dirname, "public/index.html"));
 // res.json() allows us to return JSON instead of a buffer, string, or static file
 //return the `notes.html` file
 app.get("/notes"),
   (req, res) => res.sendFile(path.join(__dirname, "/public/notes.html"));
+//GET route for home page
+app.get("/"),
+  (req, res) => res.sendFile(path.join(__dirname, "public/index.html"));
 
 // Fallback route for when a user attempts to visit routes that don't exist
 //return the `index.html` file

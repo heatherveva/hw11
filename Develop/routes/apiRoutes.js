@@ -6,8 +6,10 @@ const { v4: uuidv4 } = require("uuid");
 const { readAndAppend, readFromFile } = require("../../helpers/fsUtils");
 
 // GET Route for retrieving all the feedback
-router.get("/", (req, res) =>
-  readFromFile("./db/db.json").then((data) => res.json(JSON.parse(data)))
+router.get("/notes", (req, res) =>
+  readFromFile("./Develop/db/db.json").then((data) =>
+    res.json(JSON.parse(data))
+  )
 );
 
 // POST Route for submitting feedback
@@ -24,7 +26,7 @@ router.post("/notes", (req, res) => {
       feedback_id: uuidv4(),
     };
 
-    readAndAppend(newNote, "./db/db.json");
+    readAndAppend(newNote, "./Develop/db/db.json");
 
     const response = {
       status: "success",

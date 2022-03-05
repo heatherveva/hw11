@@ -23,7 +23,7 @@ router.post("/notes", (req, res) => {
     const newNote = {
       title,
       text,
-      feedback_id: uuidv4(),
+      id: uuidv4(),
     };
 
     readAndAppend(newNote, "./Develop/db/db.json");
@@ -35,7 +35,7 @@ router.post("/notes", (req, res) => {
 
     res.json(response);
   } else {
-    res.json("Error in posting feedback");
+    res.json("Error in posting note");
   }
 });
 

@@ -5,14 +5,14 @@ const router = require("express").Router();
 const { v4: uuidv4 } = require("uuid");
 const { readAndAppend, readFromFile } = require("../../helpers/fsUtils");
 
-// GET Route for retrieving all the feedback
+// GET Route for retrieving all the notes
 router.get("/notes", (req, res) =>
   readFromFile("./Develop/db/db.json").then((data) =>
     res.json(JSON.parse(data))
   )
 );
 
-// POST Route for submitting feedback
+// POST Route for submitting notes
 router.post("/notes", (req, res) => {
   // Destructuring assignment for the items in req.body
   const { title, text } = req.body;
@@ -35,8 +35,31 @@ router.post("/notes", (req, res) => {
 
     res.json(response);
   } else {
-    res.json("Error in posting note");
+    res.json("Error in posting note.");
   }
+
+  //DELETE ROUTE
+
+  router.delete("/:id", (req, res) => {
+    const { id } = res.id;
+
+    if (id) {
+      const newNote = {
+        title,
+        text,
+        id: uuidv4(),
+      };
+
+      handleNoteDelete(newNote, "./Develop/db/db.json");
+
+      const response = {
+        status: "success",
+        body: {},
+      };
+
+      res.json(response);
+    }
+  });
 });
 
 module.exports = router;

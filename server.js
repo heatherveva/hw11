@@ -1,6 +1,6 @@
 const express = require("express");
 const path = require("path");
-const route = require("./Develop/routes/apiRoutes");
+const router = require("./Develop/routes/apiRoutes");
 
 const PORT = process.env.PORT || 3001;
 
@@ -10,7 +10,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/api", route);
+app.use("/api", router);
 
 app.use(express.static("public"));
 // res.json() allows us to return JSON instead of a buffer, string, or static file

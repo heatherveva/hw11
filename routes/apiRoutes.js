@@ -3,13 +3,11 @@
 
 const router = require("express").Router();
 const { v4: uuidv4 } = require("uuid");
-const { readAndAppend, readFromFile } = require("../../helpers/fsUtils");
+const { readAndAppend, readFromFile } = require("../helpers/fsUtils");
 
 // GET Route for retrieving all the notes
 router.get("/notes", (req, res) =>
-  readFromFile("./Develop/db/db.json").then((data) =>
-    res.json(JSON.parse(data))
-  )
+  readFromFile("./db/db.json").then((data) => res.json(JSON.parse(data)))
 );
 
 // POST Route for submitting notes
@@ -26,7 +24,7 @@ router.post("/notes", (req, res) => {
       id: uuidv4(),
     };
 
-    readAndAppend(newNote, "./Develop/db/db.json");
+    readAndAppend(newNote, "./db/db.json");
 
     const response = {
       status: "success",
@@ -40,26 +38,26 @@ router.post("/notes", (req, res) => {
 
   //DELETE ROUTE
 
-  router.delete("/:id", (req, res) => {
-    const { id } = res.id;
+  // router.delete("/api/notes/:id", (req, res) => {
+  //   const { id } = res.id;
 
-    if (id) {
-      const newNote = {
-        title,
-        text,
-        id: uuidv4(),
-      };
+  //   if (id) {
+  //     const newNote = {
+  //       title,
+  //       text,
+  //       id: uuidv4(),
+  //     };
 
-      handleNoteDelete(newNote, "./Develop/db/db.json");
+  //     handleNoteDelete(newNote, "./Develop/db/db.json");
 
-      const response = {
-        status: "success",
-        body: {},
-      };
+  //     const response = {
+  //       status: "success",
+  //       body: {},
+  //     };
 
-      res.json(response);
-    }
-  });
+  //     res.json(response);
+  //   }
+  // });
 });
 
 module.exports = router;

@@ -1,6 +1,6 @@
 const express = require("express");
 const path = require("path");
-const router = require("./Develop/routes/apiRoutes");
+const router = require("./routes/apiRoutes");
 
 const PORT = process.env.PORT || 3001;
 
@@ -17,18 +17,18 @@ app.use(express.static("public"));
 //return the `notes.html` file
 
 app.get("/notes", (req, res) =>
-  res.sendFile(path.join(__dirname, "Develop/public/notes.html"))
+  res.sendFile(path.join(__dirname, "/public/notes.html"))
 );
 
 //GET route for home page
 app.get("/", (req, res) =>
-  res.sendFile(path.join(__dirname, "Develop/public/index.html"))
+  res.sendFile(path.join(__dirname, "/public/index.html"))
 );
 
 // Fallback route for when a user attempts to visit routes that don't exist
 //return the `index.html` file
 app.get("*", (req, res) =>
-  res.sendFile(path.join(__dirname, "Develop/public/index.html"))
+  res.sendFile(path.join(__dirname, "/public/index.html"))
 );
 
 app.listen(PORT, () =>

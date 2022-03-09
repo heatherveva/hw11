@@ -32,4 +32,4 @@ GitHub Repository: https://github.com/heatherveva/hw11.git
 
 GitHub Page: https://heatherveva.github.io/hw11/
 
-Heroku:
+Heroku: https://hw11-heather-notetaker.herokuapp.com/
